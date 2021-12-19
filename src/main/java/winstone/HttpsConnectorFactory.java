@@ -63,6 +63,7 @@ public class HttpsConnectorFactory extends AbstractSecuredConnectorFactory imple
             .withRequestHeaderSize(Option.REQUEST_HEADER_SIZE.get(args))
             .withKeepAliveTimeout(Option.HTTPS_KEEP_ALIVE_TIMEOUT.get(args))
             .withSniHostCheck(Option.HTTPS_SNI_HOST_CHECK.get(args))
+            .withSniRequired(Option.HTTPS_SNI_REQUIRED.get(args))
             .withSslContext(getSSLContext(args));
         ServerConnector sc = scb.build();
         server.addConnector(sc);
