@@ -9,6 +9,7 @@ package winstone;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.SecuredRedirectHandler;
 import winstone.cmdline.Option;
@@ -61,9 +62,10 @@ public class HttpsConnectorFactory extends AbstractSecuredConnectorFactory imple
             .withListenerAddress(Option.HTTPS_LISTEN_ADDRESS.get(args))
             .withRequestHeaderSize(Option.REQUEST_HEADER_SIZE.get(args))
             .withKeepAliveTimeout(Option.HTTPS_KEEP_ALIVE_TIMEOUT.get(args))
+            .withSniHostCheck(Option.HTTPS_SNI_HOST_CHECK.get(args))
             .withSslContext(getSSLContext(args));
-        Connector connector = scb.build();
-        server.addConnector(connector);
-        return connector;
+        ServerConnector sc = scb.build();
+        server.addConnector(sc);
+        return sc;
     }
 }

@@ -74,7 +74,7 @@ public class HttpsConnectorFactoryTest extends AbstractWinstoneTest {
         args.put("httpPort", "-1");
         args.put("httpsPort", "0");
         winstone = new Launcher(args);
-        int port = (( ServerConnector)winstone.server.getConnectors()[0]).getLocalPort();
+        int port = ((ServerConnector)winstone.server.getConnectors()[0]).getLocalPort();
 
 
         try {
@@ -115,7 +115,7 @@ public class HttpsConnectorFactoryTest extends AbstractWinstoneTest {
         List<ServerConnector> serverConnectors =
             Arrays.stream( winstone.server.getConnectors() )
                 .map(connector -> (ServerConnector)connector ).collect(Collectors.toList());
-        
+
         int httpsPort = serverConnectors.stream()
                             .filter(serverConnector -> serverConnector.getDefaultProtocol().startsWith("SSL"))
                             .findFirst().get().getLocalPort();
